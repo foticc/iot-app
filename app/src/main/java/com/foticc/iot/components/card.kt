@@ -10,9 +10,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material.icons.rounded.AccountBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -28,17 +30,32 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-@Composable
+
 @Preview
-fun SmallShowCard() {
-    Material3Card(modifier = Modifier.padding(10.dp).width(119.dp).height(50.dp)) {
+@Composable
+fun Demo() {
+    SmallShowCard(mainText = "Smart Tv",
+        extra = "2 Active")
+}
+
+@Composable
+fun SmallShowCard(
+    mainText:String,
+    extra:String
+) {
+    Material3Card(modifier = Modifier
+        .padding(10.dp)
+        .width(119.dp)
+        .height(50.dp)) {
         Row(horizontalArrangement=Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-            Box(modifier = Modifier.background(Color.White).clip(RoundedCornerShape(5f))){
-                Icon(imageVector = Icons.Default.ThumbUp, contentDescription = "ThumbUp")
+            Box{
+                Icon(
+                    imageVector = Icons.Rounded.AccountBox,
+                    contentDescription = "ThumbUp")
             }
-            Column(modifier = Modifier.padding(start = 10.dp)) {
-                Text(text = "Smart Tv")
-                Text(text = "2 Active")
+            Column(horizontalAlignment = Alignment.CenterHorizontally,modifier = Modifier.padding(start = 10.dp)) {
+                Text(text = mainText)
+                Text(text = extra)
             }
 
         }
