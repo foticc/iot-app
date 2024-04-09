@@ -42,6 +42,7 @@ fun CustomSliderDemo() {
         mutableFloatStateOf(30f)
     }
     Slider(
+
         value = sliderValue,
         valueRange = 10f..100f,
         onValueChange = {
