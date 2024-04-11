@@ -1,2 +1,11 @@
 package com.foticc.iot.ui.rooms
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+
+
+@Preview
+@Composable
+private fun PreviewRooms() {
+    
+}
