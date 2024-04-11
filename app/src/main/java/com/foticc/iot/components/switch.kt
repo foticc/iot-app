@@ -41,7 +41,7 @@ fun PrevSceneSwitch() {
     }
 }
 
-@Preview
+@Preview(backgroundColor = 0xFFFFFFFF)
 @Composable
 fun PrevComplex() {
     MiddleCard()
@@ -87,24 +87,25 @@ fun MiddleCard(
     Material3Card(
         modifier = Modifier
             .width(171.dp)
-            .height(116.dp)
+            .height(116.dp),
+        backgroundColor = Color(0xFFF7F7F7)
     ) {
         Column(
+            modifier = Modifier.fillMaxSize().padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceAround,
-                modifier = Modifier
-                    .width(139.dp)
-                    .height(32.dp),
+                horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.width(139.dp).height(32.dp),
             ) {
                 Icon(
+                    modifier = Modifier.weight(1f),
                     imageVector = Icons.Rounded.AccountBox,
                     contentDescription = "ThumbUp"
                 )
-                Switch(modifier = Modifier, checked = checked,
+                Switch(modifier = Modifier.weight(1f), checked = checked,
                     colors = SwitchDefaults.colors(checkedThumbColor = Color.Blue),
                     onCheckedChange = {
                         checked = !checked
@@ -116,11 +117,11 @@ fun MiddleCard(
                 modifier = Modifier
                     .width(139.dp)
                     .height(32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
+                horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(modifier = Modifier.padding(start = 16.dp), text = "Smart TV")
-                Text(modifier = Modifier.padding(start = 16.dp), text = "1 Device")
+                Text(modifier = Modifier, text = "Smart TV")
+                Text(modifier = Modifier.padding(top = 2.dp), text = "1 Device")
             }
 
         }
@@ -160,4 +161,5 @@ fun CustomSwitch(
         onCheckedChange = onCheckedChange
     )
 }
+
 

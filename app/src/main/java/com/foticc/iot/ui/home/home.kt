@@ -42,6 +42,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.foticc.iot.ui.dashboard.PrevDashboard
 import com.foticc.iot.ui.theme.Maybeblack
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
@@ -78,7 +79,7 @@ fun Content(modifier: Modifier = Modifier, navController: NavHostController) {
         startDestination = BottomItem.Dashboard.route
     ) {
         composable(BottomItem.Dashboard.route) {
-            Text(text = "123")
+            PrevDashboard()
         }
         composable(BottomItem.Rooms.route) {
             Text(text = "456")
