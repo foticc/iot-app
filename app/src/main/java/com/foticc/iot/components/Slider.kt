@@ -2,8 +2,12 @@ package com.foticc.iot.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -20,13 +24,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.lerp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PointMode
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.drawText
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -49,28 +59,21 @@ fun SliderDemo() {
 @Composable
 fun CustomSliderDemo() {
     var sliderValue by remember {
-        mutableFloatStateOf(30f)
+        mutableFloatStateOf(100f)
     }
     Text(text = "${sliderValue}")
-
-
     Slider(
+        modifier = Modifier
+            .rotate(-90f)
+            .fillMaxSize(),
         value = sliderValue,
         valueRange = 10f..100f,
         onValueChange = {
             sliderValue = it
         },
-//        colors = SliderDefaults.colors(
-//            thumbColor= Color.Green,
-//            activeTickColor = Color.Yellow,
-//            activeTrackColor = Color.Green,
-//            inactiveTrackColor = Color.Red
-//        ),
-        thumb = {
-//            Icon(imageVector = Icons.Default.FavoriteBorder, contentDescription = "edit")
-        },
+        thumb = {},
         track = {
-            CustomTrack(sliderPositions = it)
+            CustomTrack(sliderPositions = it,sliderValue)
         }
 
 
@@ -79,6 +82,7 @@ fun CustomSliderDemo() {
 
 @Composable
 fun CustomTrack(sliderPositions: SliderPositions,
+                sliderValue:Float,
                 modifier: Modifier = Modifier,
                 colors: SliderColors = SliderDefaults.colors(),
                 enabled: Boolean = true) {
@@ -136,6 +140,9 @@ fun CustomTrack(sliderPositions: SliderPositions,
             )
         }
     }
+    Text(text = "${sliderValue.toInt()}",modifier = Modifier.rotate(90f))
 }
+
+
 
 

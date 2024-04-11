@@ -2,20 +2,17 @@ package com.foticc.iot.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ThumbUp
-import androidx.compose.material.icons.rounded.AccountBox
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,31 +26,48 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.foticc.iot.components.icon.FontIcon
+import com.foticc.iot.components.icon.FontIcons
 
 
 @Preview
 @Composable
 fun Demo() {
-    SmallShowCard(mainText = "Smart Tv",
-        extra = "2 Active")
+    SmallShowCard(
+        icon = { FontIcon(icon = FontIcons.material_symbols_tv_rounded) }, mainText = "Smart TV",
+        extra = "2 Active"
+    )
 }
 
 @Composable
 fun SmallShowCard(
-    mainText:String,
-    extra:String
+    icon: @Composable BoxScope.() -> Unit,
+    mainText: String,
+    extra: String,
 ) {
-    Material3Card(modifier = Modifier
-        .padding(10.dp)
-        .width(119.dp)
-        .height(50.dp)) {
-        Row(horizontalArrangement=Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-            Box{
-                Icon(
-                    imageVector = Icons.Rounded.AccountBox,
-                    contentDescription = "ThumbUp")
-            }
-            Column(horizontalAlignment = Alignment.CenterHorizontally,modifier = Modifier.padding(start = 10.dp)) {
+    Material3Card(
+        modifier = Modifier
+            .padding(10.dp)
+            .width(119.dp)
+            .height(50.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxSize(), horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .padding(start = 12.dp)
+                    .clip(CircleShape)
+                    .background(Color.White),
+                content = icon
+            )
+            Column(
+                modifier = Modifier
+                    .padding(start = 8.dp)
+                    .weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(text = mainText)
                 Text(text = extra)
             }
@@ -70,7 +84,7 @@ fun Material3Card(
     contentColor: Color = contentColorFor(backgroundColor),
     border: BorderStroke? = null,
     elevation: Dp = 14.dp,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Surface(
         modifier = modifier,

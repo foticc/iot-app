@@ -2,6 +2,7 @@ package com.foticc.iot.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,15 +28,36 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.foticc.iot.components.icon.FontIcon
+import com.foticc.iot.components.icon.FontIcons
 
-@Preview(name = "Scene")
+@Preview
 @Composable
-fun SceneSwitch() {
+fun PrevSceneSwitch() {
+    SceneSwitch(
+        content = "Morning Scene"
+    ) {
+        FontIcon(icon = FontIcons.ph_sun_fill)
+    }
+}
+
+@Preview
+@Composable
+fun PrevComplex() {
+    MiddleCard()
+}
+
+@Composable
+fun SceneSwitch(
+    modifier: Modifier = Modifier,
+    content: String,
+    prefix: @Composable BoxScope.() -> Unit,
+) {
     var checked by remember {
         mutableStateOf(false)
     }
     Material3Card(
-        modifier = Modifier
+        modifier = modifier
             .width(358.dp)
             .height(64.dp)
     ) {
@@ -43,13 +65,8 @@ fun SceneSwitch() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(modifier = Modifier.padding(start = 16.dp)) {
-                Icon(
-                    imageVector = Icons.Rounded.AccountBox,
-                    contentDescription = "ThumbUp"
-                )
-            }
-            Text(modifier = Modifier.padding(start = 16.dp), text = "Morning scene")
+            Box(modifier = Modifier.padding(start = 16.dp), content = prefix)
+            Text(modifier = Modifier.padding(start = 16.dp), text = content)
             Switch(modifier = Modifier.padding(start = 16.dp, end = 16.dp), checked = checked,
                 colors = SwitchDefaults.colors(checkedThumbColor = Color.Blue),
                 onCheckedChange = {
@@ -60,9 +77,10 @@ fun SceneSwitch() {
     }
 }
 
-@Preview(name = "Frequently Used")
 @Composable
-fun Complex() {
+fun MiddleCard(
+
+) {
     var checked by remember {
         mutableStateOf(false)
     }
@@ -111,11 +129,23 @@ fun Complex() {
 
 @Preview
 @Composable
-fun CustomSwith() {
+fun PrevCustomSwitch() {
     var checked by remember {
         mutableStateOf(false)
     }
-    Switch(modifier = Modifier, checked = checked,
+    CustomSwitch(checked = checked) {
+        checked = !checked
+    }
+}
+
+@Composable
+fun CustomSwitch(
+    modifier: Modifier = Modifier,
+    checked: Boolean,
+    onCheckedChange: ((Boolean) -> Unit)?,
+) {
+    Switch(
+        modifier = modifier, checked = checked,
         colors = SwitchDefaults.colors(
             uncheckedThumbColor = Color.White,
             uncheckedIconColor = Color.White,
@@ -127,8 +157,7 @@ fun CustomSwith() {
             checkedBorderColor = Color.Green,
             checkedTrackColor = Color.Green
         ),
-        onCheckedChange = {
-            checked = !checked
-        })
+        onCheckedChange = onCheckedChange
+    )
 }
 
