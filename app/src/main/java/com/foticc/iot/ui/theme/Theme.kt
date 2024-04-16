@@ -12,6 +12,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -24,8 +25,14 @@ private val DarkColorScheme = darkColorScheme(
     tertiary = Pink80
 )
 
-private val TestColorScheme = lightColorScheme(
-    primary = OnlyGreen
+private val IotColorScheme = lightColorScheme(
+    primary = Color.White,
+    onPrimary = OnlyGreen,
+    secondary = Color.Green,
+    tertiary = Color.Blue,
+    surface = CardColor,
+    secondaryContainer = Maybeblack,
+    onSecondaryContainer = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -67,7 +74,7 @@ fun IotappTheme(
         }
 
         darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        else -> IotColorScheme
     }
     val view = LocalView.current
     if (!view.isInEditMode) {

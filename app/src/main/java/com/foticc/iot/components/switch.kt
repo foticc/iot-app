@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountBox
+import androidx.compose.material.icons.rounded.ArrowForward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -30,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.foticc.iot.components.icon.FontIcon
 import com.foticc.iot.components.icon.FontIcons
+import com.foticc.iot.ui.theme.CardColor
 
 @Preview
 @Composable
@@ -67,8 +69,7 @@ fun SceneSwitch(
         ) {
             Box(modifier = Modifier.padding(start = 16.dp), content = prefix)
             Text(modifier = Modifier.padding(start = 16.dp), text = content)
-            Switch(modifier = Modifier.padding(start = 16.dp, end = 16.dp), checked = checked,
-                colors = SwitchDefaults.colors(checkedThumbColor = Color.Blue),
+            CustomSwitch(modifier = Modifier.padding(start = 16.dp, end = 16.dp), checked = checked,
                 onCheckedChange = {
                     checked = !checked
                 })
@@ -88,25 +89,28 @@ fun MiddleCard(
         modifier = Modifier
             .width(171.dp)
             .height(116.dp),
-        backgroundColor = Color(0xFFF7F7F7)
+        backgroundColor = CardColor
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.width(139.dp).height(32.dp),
+                modifier = Modifier
+                    .width(139.dp)
+                    .height(32.dp),
             ) {
                 Icon(
                     modifier = Modifier.weight(1f),
                     imageVector = Icons.Rounded.AccountBox,
                     contentDescription = "ThumbUp"
                 )
-                Switch(modifier = Modifier.weight(1f), checked = checked,
-                    colors = SwitchDefaults.colors(checkedThumbColor = Color.Blue),
+                CustomSwitch(modifier = Modifier.weight(1f), checked = checked,
                     onCheckedChange = {
                         checked = !checked
                     })

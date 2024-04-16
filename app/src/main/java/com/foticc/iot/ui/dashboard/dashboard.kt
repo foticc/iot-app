@@ -36,13 +36,17 @@ import com.foticc.iot.ui.home.BottomItem
 @Preview
 @Composable
 fun PrevDashboard() {
+    Dashboard()
+}
+
+@Composable
+fun Dashboard() {
     Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally) {
         Shortcut()
         Scenes()
         FrequentlyUsed()
     }
-
 }
 
 
