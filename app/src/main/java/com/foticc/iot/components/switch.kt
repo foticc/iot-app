@@ -120,7 +120,8 @@ fun MiddleCard(
             Column(
                 modifier = Modifier
                     .width(139.dp)
-                    .height(32.dp),
+                    .height(32.dp)
+                    .padding(bottom = 2.dp),
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center
             ) {
