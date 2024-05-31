@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -105,7 +106,7 @@ fun Scenes() {
 @Composable
 fun FrequentlyUsed() {
     Column {
-        Text(text = "Frequently Used")
+        Text(text = "Frequently Used", style =  MaterialTheme.typography.titleMedium)
         LazyVerticalGrid(
             modifier = Modifier.fillMaxWidth(),
             // 固定两列
