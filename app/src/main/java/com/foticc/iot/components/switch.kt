@@ -83,12 +83,12 @@ fun SceneSwitch(
 }
 
 @Composable
-fun MiddleCard() {
+fun MiddleCard(modifier: Modifier = Modifier) {
     var checked by remember {
         mutableStateOf(false)
     }
     Material3Card(
-        modifier = Modifier
+        modifier = modifier
             .width(171.dp)
             .height(116.dp),
         backgroundColor = CardColor

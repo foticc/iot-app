@@ -1,5 +1,10 @@
 package com.foticc.iot.components
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -16,27 +21,48 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
 import com.foticc.iot.R
 
 @Preview(name = "avatar", showSystemUi = false)
 @Composable
 fun AvatarDemo() {
+    var imgUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+
+    val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { imgUri = it}
+
+    val rememberImagePainter = rememberAsyncImagePainter(
+        model = ImageRequest.Builder(LocalContext.current).data(imgUri)
+            .placeholder(R.drawable.ic_launcher_background)
+            .build()
+    )
+
     Box(
         modifier = Modifier
             .padding(0.dp)
             .size(110.dp)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+//            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = rememberImagePainter,
             contentDescription = "avatar",
             modifier = Modifier
                 .fillMaxSize()
@@ -45,15 +71,16 @@ fun AvatarDemo() {
                 .matchParentSize()
         )
         IconButton(modifier = Modifier.align(Alignment.BottomEnd),
-            onClick = { /*TODO*/ }) {
+            onClick = { launcher.launch("image/*") }) {
             Icon(
                 modifier = Modifier
                     .fillMaxSize()
-                    .size(32.dp)
+                    .size(16.dp)
                     .clip(CircleShape)
-                    .background(Color(0xff34E0A1)),
+                    .background(Color.Transparent),
                 imageVector = Icons.Default.Edit,
-                contentDescription = "edit"
+                contentDescription = "edit",
+                tint = Color.Red
             )
         }
 

@@ -40,6 +40,7 @@ private fun PrevOutlinedTextField() {
 @Composable
 fun CommonTextField(
     modifier: Modifier = Modifier,
+    placeholder: @Composable (() -> Unit)? = null,
     value: String,
     onValueChange: (String) -> Unit
 ) {
@@ -53,6 +54,7 @@ fun CommonTextField(
         modifier = modifier,
         value = value,
         singleLine = true,
+        placeholder = placeholder,
         trailingIcon = {
             if (notNull) {
                 IconButton(onClick = { onValueChange.invoke("") }) {
@@ -62,6 +64,9 @@ fun CommonTextField(
                     )
                 }
             }
+        },
+        suffix = {
+                 Text(text = "12313")
         },
         colors = OutlinedTextFieldDefaults.colors(
             cursorColor = Color(0xff008B28),

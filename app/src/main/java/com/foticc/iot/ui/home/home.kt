@@ -58,6 +58,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.foticc.iot.ui.dashboard.Dashboard
 import com.foticc.iot.ui.dashboard.PrevDashboard
+import com.foticc.iot.ui.profiles.Profiles
+import com.foticc.iot.ui.rooms.RoomsPages
 import com.foticc.iot.ui.theme.Maybeblack
 import kotlinx.coroutines.launch
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
@@ -69,7 +71,7 @@ fun Home(modifier: Modifier = Modifier, navController: NavHostController) {
     val scope = rememberCoroutineScope()
     var isBottomSheetVisible by rememberSaveable { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true
+        skipPartiallyExpanded = true,
     )
 
     Scaffold(
@@ -116,7 +118,7 @@ fun TopBar(modifier: Modifier = Modifier, onClick: () -> Unit) {
 }
 
 fun Context.toast(text: String) {
-    Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+    Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -153,10 +155,10 @@ fun Content(modifier: Modifier = Modifier, navController: NavHostController) {
             Dashboard()
         }
         composable(BottomItem.Rooms.route) {
-            Text(text = "456")
+            RoomsPages()
         }
         composable(BottomItem.Profiles.route) {
-            Text(text = "789")
+            Profiles()
         }
     }
 }

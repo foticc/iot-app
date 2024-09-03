@@ -2,6 +2,7 @@ package com.foticc.iot.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowForward
@@ -18,11 +19,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.foticc.iot.ui.theme.IotappTheme
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 fun SettingCardDemo() {
     
-    Material3Card {
+    Material3Card(modifier = Modifier.fillMaxWidth()) {
         val padding = Modifier.padding(start = 16.dp)
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
